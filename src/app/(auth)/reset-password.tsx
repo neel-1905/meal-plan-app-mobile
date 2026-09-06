@@ -4,7 +4,7 @@ import { ArrowLeft } from "lucide-react-native";
 import { View, TouchableOpacity } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-export const ResetPassword = () => {
+const ResetPassword = () => {
   return (
     <View className="flex-1 p-safe-offset-4">
       <SafeAreaView style={{ flex: 1 }}>
@@ -21,3 +21,5 @@ export const ResetPassword = () => {
     </View>
   );
 };
+
+export default ResetPassword;

@@ -1,4 +1,4 @@
-import { Redirect, Stack } from "expo-router";
+import { Redirect, Stack, useSegments } from "expo-router";
 import "../global.css";
 import { QueryProvider } from "@/shared/providers/query-provider";
 import {
@@ -14,10 +14,15 @@ import {
 import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
 import { KeyboardProvider } from "react-native-keyboard-controller";
-import { Platform, StatusBar } from "react-native";
+import { StatusBar } from "react-native";
 import { NavigationBar } from "expo-navigation-bar";
 import Toast from "react-native-toast-message";
-import { ErrorToast, SuccessToast } from "@/shared/components/ui";
+import {
+  ErrorToast,
+  LoadingScreen,
+  SuccessToast,
+} from "@/shared/components/ui";
+import { authClient } from "@/features/auth/lib/auth-client";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -32,14 +37,37 @@ export default function RootLayout() {
     Poppins_900Black,
   });
 
+  const segments = useSegments();
+
+  const { data: session, isPending: sessionLoading } = authClient.useSession();
+
   useEffect(() => {
-    if (fontsLoaded) {
+    if (fontsLoaded && !sessionLoading) {
       SplashScreen.hideAsync();
     }
   }, [fontsLoaded]);
 
-  if (!fontsLoaded) {
-    return null;
+  if (!fontsLoaded || sessionLoading) {
+    return <LoadingScreen />;
+  }
+
+  const firstSegment = segments[0];
+
+  const isAuthRoute = firstSegment === "(auth)";
+  const isAppRoute = firstSegment === "(app)";
+
+  /*
+   * Not authenticated
+   */
+  if (!session && !isAuthRoute) {
+    return <Redirect href="/get-started" />;
+  }
+
+  /*
+   * Authenticated
+   */
+  if (session && !isAppRoute) {
+    return <Redirect href="/meal-plan" />;
   }
 
   return (
