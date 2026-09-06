@@ -35,13 +35,7 @@
         }
       ],
       "expo-font",
-      [
-        "expo-navigation-bar",
-        {
-          "enforceContrast": false,
-          "style": "light"
-        }
-      ]
+      "expo-navigation-bar"
     ],
     "experiments": {
       "typedRoutes": true,

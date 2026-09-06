@@ -1,3 +1,4 @@
+import { cn } from "@/shared/utils";
 import React from "react";
 import { View, Text, TextInput, TextInputProps } from "react-native";
 
@@ -17,25 +18,28 @@ export function BaseInput({
   ...props
 }: BaseInputProps) {
   return (
-    <View className={`mb-4 w-full ${containerClassName || ""}`}>
+    <View className={cn(`mb-4 w-full`, containerClassName)}>
       {label && (
         <Text className="mb-1.5 text-sm font-semibold text-foreground">
           {label}
         </Text>
       )}
       <View
-        className={`flex-row items-center border rounded-lg bg-white h-12 px-3 ${
-          error ? "border-destructive" : "border-border"
-        }`}
+        className={cn(
+          "border rounded-2xl py-1 px-3 flex-row items-center gap-2",
+          error ? "border-destructive" : "border-border",
+        )}
       >
         <TextInput
-          className={`flex-1 text-base text-foreground h-full ${className || ""}`}
-          placeholderTextColor="#9ca3af"
+          className={cn("font-sans flex-1", className)}
+          placeholderTextColor={`#666666`}
           {...props}
         />
-        {rightElement && <View className="ml-2">{rightElement}</View>}
+        {rightElement}
       </View>
-      {error && <Text className="mt-1 text-xs text-destructive">{error}</Text>}
+      {error && (
+        <Text className="mt-1 text-xs text-destructive font-sans">{error}</Text>
+      )}
     </View>
   );
 }
