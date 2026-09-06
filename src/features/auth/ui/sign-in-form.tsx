@@ -21,14 +21,14 @@ export const SignInForm = () => {
 
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
-  const { mutateAsync, isPending, error } = useSignIn();
+  const { mutateAsync, isPending } = useSignIn();
 
   const onSubmit = async (data: LoginValues) => {
     await mutateAsync(data);
   };
 
   return (
-    <View>
+    <View className="flex flex-col gap-4">
       <FormInput
         control={control}
         name="email"

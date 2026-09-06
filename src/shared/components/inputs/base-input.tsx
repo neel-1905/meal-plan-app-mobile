@@ -18,7 +18,7 @@ export function BaseInput({
   ...props
 }: BaseInputProps) {
   return (
-    <View className={cn(`mb-4 w-full`, containerClassName)}>
+    <View className={cn(`w-full`, containerClassName)}>
       {label && (
         <Text className="mb-1.5 text-sm font-semibold text-foreground">
           {label}

@@ -1,5 +1,5 @@
 import { Heading } from "@/shared/components/ui";
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, TouchableOpacity } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { ArrowLeft } from "lucide-react-native";
 import { SignInForm } from "@/features/auth/ui/sign-in-form";
