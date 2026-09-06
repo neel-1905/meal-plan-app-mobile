@@ -1,10 +1,10 @@
-import { ForgotPasswordForm } from "@/features/auth/ui/forgot-password-form";
+import { ResetPasswordForm } from "@/features/auth/ui/reset-password.form";
 import { Heading } from "@/shared/components/ui";
 import { ArrowLeft } from "lucide-react-native";
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, TouchableOpacity } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-const ForgotPassword = () => {
+export const ResetPassword = () => {
   return (
     <View className="flex-1 p-safe-offset-4">
       <SafeAreaView style={{ flex: 1 }}>
@@ -16,10 +16,8 @@ const ForgotPassword = () => {
           <Heading text="Forgot Password" />
         </View>
 
-        <ForgotPasswordForm />
+        <ResetPasswordForm />
       </SafeAreaView>
     </View>
   );
 };
-
-export default ForgotPassword;

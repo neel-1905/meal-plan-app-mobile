@@ -60,6 +60,13 @@ export const SignInForm = () => {
         secureTextEntry={!isPasswordVisible}
       />
 
+      <Link
+        href={`/forgot-password`}
+        className="ml-auto underline text-sm font-sans"
+      >
+        Forgot Password
+      </Link>
+
       <Button
         className="mb-7"
         onPress={handleSubmit(onSubmit)}
