@@ -1,32 +1,41 @@
-import { userPreferencesQueryOptions } from "@/features/onboarding/hooks/onboarding.query-options";
-import { LoadingScreen } from "@/shared/components/ui";
-import { useQuery } from "@tanstack/react-query";
-import { View, Text } from "react-native";
+import { Step1 } from "@/features/onboarding/ui/step-1";
+import { Step2 } from "@/features/onboarding/ui/step-2";
+import { Step3 } from "@/features/onboarding/ui/step-3";
+import { Button } from "@/shared/components/button";
+import { router } from "expo-router";
+import { useState } from "react";
+
+import { View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const OnboardingScreen = () => {
-  const {
-    data: preferences,
-    isPending,
-    error,
-  } = useQuery(userPreferencesQueryOptions());
+  const [currentStep, setCurrentStep] = useState(1);
 
-  if (isPending) return <LoadingScreen />;
+  const steps = [Step1, Step2, Step3];
 
-  if (error) {
-    return (
-      <View className="flex-1 items-center justify-center">
-        <Text>Failed to load preferences</Text>
-      </View>
-    );
-  }
+  const CurrentStep = steps[currentStep - 1];
+
+  const handleNextStep = () => {
+    if (currentStep < steps.length) {
+      setCurrentStep((step) => step + 1);
+      return;
+    }
+
+    if (currentStep === 3) router.navigate("/diet");
+  };
 
   return (
-    <View>
-      <Text>
-        Onboarding completed: {preferences.onboardingCompleted ? "Yes" : "No"}
-      </Text>
+    <View className="bg-background flex-1 p-safe-offset-4">
+      <SafeAreaView style={{ flex: 1 }}>
+        <View className="flex-1">
+          <CurrentStep />
+        </View>
 
-      <Text>Servings: {preferences.defaultServings}</Text>
+        <Button onPress={handleNextStep}>Continue</Button>
+        <Button variant={`ghost`} onPress={() => router.navigate("/diet")}>
+          Skip
+        </Button>
+      </SafeAreaView>
     </View>
   );
 };

@@ -9,6 +9,8 @@ export const Heading = ({
   className?: string;
 }) => {
   return (
-    <Text className={cn("text-3xl font-semibold", className)}>{text}</Text>
+    <Text className={cn("text-3xl font-semibold leading-10", className)}>
+      {text}
+    </Text>
   );
 };
