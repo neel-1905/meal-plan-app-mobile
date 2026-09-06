@@ -13,6 +13,9 @@ import {
 } from "@expo-google-fonts/poppins";
 import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
+import { KeyboardProvider } from "react-native-keyboard-controller";
+import { Platform, StatusBar } from "react-native";
+import { NavigationBar } from "expo-navigation-bar";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -39,7 +42,15 @@ export default function RootLayout() {
 
   return (
     <QueryProvider>
-      <Stack screenOptions={{ headerShown: false }} />
+      <KeyboardProvider navigationBarTranslucent statusBarTranslucent>
+        <StatusBar
+          translucent={true}
+          barStyle={`dark-content`}
+          backgroundColor={`transparent`}
+        />
+        <Stack screenOptions={{ headerShown: false }} />
+        <NavigationBar style="light" />
+      </KeyboardProvider>
       <Redirect href={`/get-started`} />
     </QueryProvider>
   );
