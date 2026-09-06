@@ -3,9 +3,17 @@ import { View, Text } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Image } from "expo-image";
 import { IMAGES } from "@/shared/constants/images";
-import { Link, router } from "expo-router";
+import { Link, Redirect, router } from "expo-router";
+import { useAuthSession } from "@/features/auth/hooks/use-auth-session.hook";
+import { LoadingScreen } from "@/shared/components/ui";
 
 const GetStartedSceen = () => {
+  const { data, isPending } = useAuthSession();
+
+  if (isPending) return <LoadingScreen />;
+
+  if (!isPending && data?.session) return <Redirect href={`/(onboarding)`} />;
+
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <View className="p-safe-offset-4 flex-1 flex flex-col justify-center">
@@ -18,7 +26,7 @@ const GetStartedSceen = () => {
 
         <View className="flex flex-col gap-3 ">
           <Button
-            onPress={() => router.navigate("/(onboarding)")}
+            onPress={() => router.navigate("/sign-up")}
             className="mt-auto"
           >
             Get Started

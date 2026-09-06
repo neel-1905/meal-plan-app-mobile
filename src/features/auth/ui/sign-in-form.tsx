@@ -6,7 +6,7 @@ import { Button } from "@/shared/components/button";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Eye, EyeClosed } from "lucide-react-native";
 import { useState } from "react";
-import { Link } from "expo-router";
+import { Link, router } from "expo-router";
 import { useSignIn } from "../hooks/use-sign-in.hook";
 
 export const SignInForm = () => {
