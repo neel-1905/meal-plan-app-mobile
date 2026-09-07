@@ -4,7 +4,7 @@
 @theme {
     --font-sans: "Poppins_400Regular";
     --font-light: "Poppins_300Light";
-    --font-regular: "Poppins_400Regular";
+    --font-nomr: "Poppins_400Regular";
     --font-medium: "Poppins_500Medium";
     --font-semibold: "Poppins_600SemiBold";
     --font-bold: "Poppins_700Bold";
@@ -19,6 +19,7 @@
             --color-foreground-muted: #666666;
             --color-primary: #f58700;
             --color-primary-muted: #ffe4c2;
+            --color-secondary: #33995b;
             --color-card: #1f2937;
             --color-border: #cccccc;
             --color-destructive: #e55b48;
@@ -33,6 +34,7 @@
             --color-foreground-muted: #666666;
             --color-primary: #f58700;
             --color-primary-muted: #ffe4c2;
+            --color-secondary: #33995b;
             --color-card: #1f2937;
             --color-border: #cccccc;
             --color-destructive: #e55b48;

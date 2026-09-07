@@ -6,11 +6,19 @@ import { IMAGES } from "@/shared/constants/images";
 import { Link, Redirect, router } from "expo-router";
 import { useAuthSession } from "@/features/auth/hooks/use-auth-session.hook";
 import { LoadingScreen } from "@/shared/components/ui";
+import { authClient } from "@/features/auth/lib/auth-client";
 
 const GetStartedSceen = () => {
-  const { data, isPending } = useAuthSession();
+  const { data, isPending, error } = authClient.useSession();
 
   if (isPending) return <LoadingScreen />;
+
+  if (error)
+    return (
+      <View className="flex-1 bg-background flex-center">
+        <Text>{error.message}</Text>
+      </View>
+    );
 
   if (!isPending && data?.session) return <Redirect href={`/(onboarding)`} />;
 

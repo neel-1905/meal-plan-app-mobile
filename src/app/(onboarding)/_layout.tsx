@@ -5,7 +5,6 @@ import { Redirect, Stack } from "expo-router";
 import { Text } from "react-native";
 
 const OnboardingLayout = () => {
-  console.log("onboarding");
   const { data, isLoading, error } = useQuery(userPreferencesQueryOptions());
 
   if (isLoading) return <LoadingScreen />;
