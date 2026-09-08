@@ -16,7 +16,7 @@ export const UserPreferencesStepCounter = ({
             key={`user-preference-${index}`}
             className={cn(
               "h-3 flex-1 rounded-full transform transition-colors delay-200",
-              currentStep === index + 1 ? "bg-secondary" : "bg-[#E6E6E6]",
+              currentStep >= index + 1 ? "bg-secondary" : "bg-[#E6E6E6]",
             )}
           ></View>
         );
