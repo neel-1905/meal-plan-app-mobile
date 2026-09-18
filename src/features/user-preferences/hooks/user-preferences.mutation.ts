@@ -8,6 +8,7 @@ interface UpdateUserPreferencesRequest {
   reminderEnabled?: boolean;
   reminderDay?: ReminderDay | null;
   reminderTime?: string | null;
+  onboardingCompleted?: boolean;
 }
 
 export const useUpdateUserPreferences = () => {
@@ -22,7 +23,7 @@ export const useUpdateUserPreferences = () => {
     onSuccess: () => {
       Toast.show({
         type: "success",
-        text1: "UserPr",
+        text1: "User preferences updated",
       });
 
       queryClient.invalidateQueries({

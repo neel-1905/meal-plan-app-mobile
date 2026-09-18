@@ -11,3 +11,5 @@ export * from "./app-text";
 export * from "./selectable-option";
 
 export * from "./selectable-chip";
+
+export * from "./app-switch";
